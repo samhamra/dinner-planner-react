@@ -1,6 +1,5 @@
 class DinnerModel {
   constructor() {
-    console.log("constructed")
     this.__numberOfGuests = 4
     this.__observers = []
   }
