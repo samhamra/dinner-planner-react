@@ -8,7 +8,7 @@ class SelectDish extends Component {
     return (
       <div className="SelectDish">
         <h2>This is the Select Dish screen</h2>
-        <Sidebar numberOfGuests={this.props.numberOfGuests} setGuestsHandler={this.props.setGuestsHandler}/>
+        <Sidebar/>
         <Dishes/>
       </div>
     );
