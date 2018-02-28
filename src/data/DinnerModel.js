@@ -1,31 +1,30 @@
-class DinnerModel {
-  constructor() {
-    this.__numberOfGuests = 4
-    this.__observers = []
-  }
+//DinnerModel Object constructor
+const DinnerModel = function () {
 
-  /* Public */
-  addObserver(observer) {
-    this.__observers.push(observer)
-  }
+  let numberOfGuests = 2;
+  let observers = [];
 
-  removeObserver(observer) {
-    this.__observers = this.__observers.filter(o => o !== observer)
-  }
+  this.setNumberOfGuests = function (num) {
+    numberOfGuests = num;
+    notifyObservers();
+  };
 
-  setNumberOfGuests(num) {
-    this.__numberOfGuests = num
-    this.__notifyObservers()
-  }
+  // should return
+  this.getNumberOfGuests = function () {
+    return numberOfGuests;
+  };
 
-  getNumberOfGuests() {
-    return this.__numberOfGuests
-  }
+  this.addObserver = function (observer) {
+    observers.push(observer);
+  };
 
-  /* Private */
-  __notifyObservers() {
-    this.__observers.forEach(o => o.update())
-  }
-}
+  this.removeObserver = function (observer) {
+    observers = observers.filter(o => o !== observer);
+  };
 
-export const model = new DinnerModel()
+  const notifyObservers = function () {
+    observers.forEach(o => o.update());
+  }
+};
+
+export const model = new DinnerModel();
