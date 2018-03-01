@@ -4,11 +4,15 @@ import Sidebar from '../Sidebar/Sidebar';
 import Dishes from '../Dishes/Dishes';
 
 class SelectDish extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div className="SelectDish">
         <h2>This is the Select Dish screen</h2>
-        <Sidebar/>
+        <Sidebar model={this.props.model}/>
         <Dishes/>
       </div>
     );

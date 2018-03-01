@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-import { model } from '../data/DinnerModel'
-
 class Sidebar extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      numberOfGuests: model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests()
     }
   }
 
   componentDidMount() {
-    model.addObserver(this)
+    this.props.model.addObserver(this)
   }
 
   componentWillUnmount() {
-    model.removeObserver(this)
+    this.props.model.removeObserver(this)
   }
 
   update() {
     this.setState({
-      numberOfGuests: model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests()
     })
   }
 
   handleChange = (e) => {
-    model.setNumberOfGuests(+e.target.value)
+    this.props.model.setNumberOfGuests(+e.target.value)
   }
 
   render() {

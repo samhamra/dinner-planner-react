@@ -24,7 +24,7 @@ const DinnerModel = function () {
 
   const notifyObservers = function () {
     observers.forEach(o => o.update());
-  }
+  };
 };
 
-export const model = new DinnerModel();
+export const modelInstance = new DinnerModel();
