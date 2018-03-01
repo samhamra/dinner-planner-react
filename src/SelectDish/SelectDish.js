@@ -4,10 +4,6 @@ import Sidebar from '../Sidebar/Sidebar';
 import Dishes from '../Dishes/Dishes';
 
 class SelectDish extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div className="SelectDish">
