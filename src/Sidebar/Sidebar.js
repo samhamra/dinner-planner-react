@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import { model } from '../data/DinnerModel'
 
 class Sidebar extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      numberOfGuests: model.getNumberOfGuests()
+    }
+  }
+
+  componentDidMount() {
+    model.addObserver(this)
+  }
+
+  componentWillUnmount() {
+    model.removeObserver(this)
+  }
+
+  update() {
+    this.setState({
+      numberOfGuests: model.getNumberOfGuests()
+    })
+  }
+
   handleChange = (e) => {
-    this.props.setGuestsHandler(+e.target.value)
+    model.setNumberOfGuests(+e.target.value)
   }
 
   render() {
@@ -11,9 +34,9 @@ class Sidebar extends Component {
       <div className="Sidebar">
         <h3>This is the sidebar</h3>
         <p>
-        People: <input value={this.props.numberOfGuests} onChange={this.handleChange}/>
+        People: <input value={this.state.numberOfGuests} onChange={this.handleChange}/>
         <br/>
-        Total number of guests: {this.props.numberOfGuests}
+        Total number of guests: {this.state.numberOfGuests}
         </p>
       </div>
     );
