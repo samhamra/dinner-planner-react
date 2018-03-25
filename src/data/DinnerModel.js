@@ -3,21 +3,7 @@ const httpOptions = {
 };
 
 const DinnerModel = function () {
-
-  let numberOfGuests = 4;
-  let observers = [];
-
-  this.setNumberOfGuests = function (num) {
-    numberOfGuests = num;
-    notifyObservers();
-  };
-
-  this.getNumberOfGuests = function () {
-    return numberOfGuests;
-  };
-
   // API Calls
-
   this.getAllDishes = function () {
     const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
     return fetch(url, httpOptions)
@@ -26,7 +12,6 @@ const DinnerModel = function () {
   }
   
   // API Helper methods
-
   const processResponse = function (response) {
     if (response.ok) {
       return response.json()
@@ -43,20 +28,6 @@ const DinnerModel = function () {
       console.error('getAllDishes() API Error:', error.message || error)
     }
   }
-
-  // Observer pattern
-
-  this.addObserver = function (observer) {
-    observers.push(observer);
-  };
-
-  this.removeObserver = function (observer) {
-    observers = observers.filter(o => o !== observer);
-  };
-
-  const notifyObservers = function () {
-    observers.forEach(o => o.update());
-  };
 };
 
 export const modelInstance = new DinnerModel();

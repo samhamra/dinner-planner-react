@@ -18,7 +18,7 @@ class Dishes extends Component {
   // this methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
-  componentDidMount = () => {
+  componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.getAllDishes().then(dishes => {
