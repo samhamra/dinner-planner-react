@@ -1,0 +1,16 @@
+header{
+	padding:2em 0em 2em 0em;
+	background-color: rgb(223,223,223);
+}
+
+#title-text{
+	font-size: 4em;
+}
+
+@media only screen and (max-width: 575px) {
+  
+  #title-text{
+  	font-size: 2em;
+  }
+  
+}

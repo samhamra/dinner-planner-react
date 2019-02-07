@@ -7,7 +7,7 @@
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('images/ajax-loader.gif') 
+                url('../../images/ajax-loader.gif') 
                 50% 50% 
                 no-repeat;
 }
@@ -20,10 +20,6 @@ body.loading .modal {
     display: block;
 }
 
-header{
-	padding:2em 0em 2em 0em;
-	background-color: rgb(223,223,223);
-}
 
 hr {
 	border: none;
@@ -48,12 +44,6 @@ p {
   overflow: hidden;
 }
 
-
-
-#title-text{
-	font-size: 4em;
-}
-
 .center {
 	margin: 0 auto;
 	display:block;
@@ -64,10 +54,3 @@ p {
 	background-color: rgb(241,162,89);
 }
 
-@media only screen and (max-width: 575px) {
-  
-  #title-text{
-  	font-size: 2em;
-  }
-  
-}

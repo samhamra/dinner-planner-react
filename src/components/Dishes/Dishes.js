@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import './Dishes.css';
-// Alternative to passing the moderl as the component property, 
-// we can import the model instance directly
-import {modelInstance} from '../data/DinnerModel';
+import '../App/App.css';
+import {modelInstance} from '../../data/DinnerModel';
 import {Link} from 'react-router-dom';
 
 
-class Dishes extends Component {
+export default class Dishes extends Component {
   constructor(props) {
     super(props);
     // We create the state to store the various statuses
@@ -50,7 +49,7 @@ class Dishes extends Component {
         dishesList = this.state.dishes.map((dish) =>
           <div className="col-xs-12 col-sm-4 col-md-3 dish-item" id={'dish-'+dish.id} key={'dish-'+dish.id}>
           <Link to={"/detailView/" + dish.id}>
-            <img className="dish-image" src={'https://spoonacular.com/recipeImages/'+ dish.image}/>
+            <img alt="dish" className="dish-image" src={'https://spoonacular.com/recipeImages/'+ dish.image}/>
             <p className="dish-name">{dish.title}</p>
           </Link>
           </div>
@@ -71,5 +70,3 @@ class Dishes extends Component {
     )
   }
 }
-
-export default Dishes;

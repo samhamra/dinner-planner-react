@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './Sidebar.css';
-import { modelInstance } from '../data/DinnerModel'
-class Sidebar extends Component {
+import '../App/App.css';
+import {modelInstance} from '../../data/DinnerModel';
+export default class Sidebar extends Component {
 
   constructor(props) {
     super(props)
@@ -73,5 +74,3 @@ class Sidebar extends Component {
     )
   }
 }
-
-export default Sidebar;

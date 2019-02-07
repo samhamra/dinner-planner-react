@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import './SelectDish.css';
-import Sidebar from '../Sidebar/Sidebar';
+import '../App/App.css';
 import Dishes from '../Dishes/Dishes';
 
-class SelectDish extends Component {
+export default class SelectDish extends Component {
+  constructor() {
+    super()
+    console.log("Skapat en selectdish");
+  }
+  
   render() {
     return (
           <div className="col-xs-12 col-sm-10 container-fluid" id="dishSearchView">
@@ -41,5 +46,3 @@ class SelectDish extends Component {
       );
   }
 }
-
-export default SelectDish;
