@@ -6,9 +6,6 @@ import Dishes from '../Dishes/Dishes';
 class SelectDish extends Component {
   render() {
     return (
-      <div class="container-fluid">
-        <div class="row">
-        <Sidebar model={this.props.model}/>
           <div className="col-xs-12 col-sm-10 container-fluid" id="dishSearchView">
             <div className="row">
               <div className="col-xs-4 col-sm-3">
@@ -33,13 +30,14 @@ class SelectDish extends Component {
                     <option value="drink">drink</option>
                   </select>
                 </div>
-                <div className="col-xs-12 col-sm-3">
+                <div className="col-xs-12 col-sm-1">
                   <button id="search-button" className="button center" type="button" name="button">Search</button>
                 </div>
               </div>
+              <div className="row">
+                <Dishes/>
+              </div>
             </div>
-      </div>
-    </div>
       );
   }
 }

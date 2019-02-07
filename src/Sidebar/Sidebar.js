@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Sidebar.css';
+import { modelInstance } from '../data/DinnerModel'
 class Sidebar extends Component {
 
   constructor(props) {
@@ -7,7 +8,7 @@ class Sidebar extends Component {
 
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: modelInstance.getNumberOfGuests()
     }
   }
 
@@ -15,24 +16,24 @@ class Sidebar extends Component {
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to setup model observer
   componentDidMount() {
-    this.props.model.addObserver(this)
+    modelInstance.addObserver(this)
   }
 
   // this is called when component is removed from the DOM
   // good place to remove observer
   componentWillUnmount() {
-    this.props.model.removeObserver(this)
+    modelInstance.removeObserver(this)
   }
 
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
-    this.setState({numberOfGuests: this.props.model.getNumberOfGuests()})
+    this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
   }
 
   // our handler for the input's on change event
   onNumberOfGuestsChanged = (e) => {
-    this.props.model.setNumberOfGuests(+ e.target.value)
+    modelInstance.setNumberOfGuests(+ e.target.value)
   }
 
   render() {
@@ -46,7 +47,7 @@ class Sidebar extends Component {
               </p>
               <div className="d-none d-sm-block hide">
                 People:
-                <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+                <input className="guest-input" value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
               </div>
             </div>
             <div className="d-none d-sm-block hide">

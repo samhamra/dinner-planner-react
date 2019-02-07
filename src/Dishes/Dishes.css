@@ -1,0 +1,26 @@
+.dish-item {
+	margin-bottom: 2em;
+}
+
+.dish-image {
+	min-width: 150px;
+	width: 150px;
+	height: 150px;
+	border: 3px solid black;
+}
+
+.dish-name{
+	border: 3px solid black;
+	border-top: none;
+	background-color: #c0c0c0;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-bottom: 0;
+	width: 150px;
+}
+@media only screen and (max-width: 575px) {
+  .dish-name, .dish-image {
+		margin: 0 auto;
+		display:block;
+	}
+}

@@ -3,6 +3,7 @@ import './Dishes.css';
 // Alternative to passing the moderl as the component property, 
 // we can import the model instance directly
 import {modelInstance} from '../data/DinnerModel';
+import {Link} from 'react-router-dom';
 
 
 class Dishes extends Component {
@@ -21,11 +22,13 @@ class Dishes extends Component {
   componentDidMount = () => {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance.getAllDishes().then(dishes => {
+    modelInstance.getAllDishes("", "").then(dishes => {
+      console.log(dishes);
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
       })
+      console.log(this.state.dishes);
     }).catch(() => {
       this.setState({
         status: 'ERROR'
@@ -45,7 +48,12 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <li key={dish.id}>{dish.title}</li>
+          <div className="col-xs-12 col-sm-4 col-md-3 dish-item" id={'dish-'+dish.id} key={'dish-'+dish.id}>
+          <Link to={"/detailView/" + dish.id}>
+            <img className="dish-image" src={'https://spoonacular.com/recipeImages/'+ dish.image}/>
+            <p className="dish-name">{dish.title}</p>
+          </Link>
+          </div>
         )
         break;
       default:
@@ -53,7 +61,14 @@ class Dishes extends Component {
         break;
     }
 
-    return ""
+    return (
+      <div className="container-fluid col-xs-12">
+        <div className="row">
+            {dishesList}
+          </div>
+      </div>
+      
+    )
   }
 }
 

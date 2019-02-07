@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel'
 import SelectDish from "./SelectDish/SelectDish";
-
+import Sidebar from "./Sidebar/Sidebar"
 class App extends Component {
   constructor(props) {
     super(props)
@@ -14,6 +14,22 @@ class App extends Component {
   }
 
   render() {
+    const SearchScreen = () => (
+      <div className="col-xs-12 container-fluid">
+        <div className="row">
+          <Sidebar/>
+          <SelectDish/>
+        </div>
+      </div>
+    )
+    
+    const Child = ({ match }) => (
+      <div>
+        <h3>ID: {match.params.id}</h3>
+      </div>
+);
+    
+    
     return (
       <div className="App">
         <header>
@@ -28,7 +44,8 @@ class App extends Component {
         <div className="container-fluid main-container">
           <div className="row">
             <Route exact path="/" component={Welcome}/>
-            <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
+              <Route path="/search" component={SearchScreen}/>
+            <Route path="/detailView/:id" component={Child}/>
           </div>
         </div>      
       </div>
