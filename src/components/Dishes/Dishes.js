@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import './Dishes.css';
 import '../App/App.css';
 import {modelInstance} from '../../data/DinnerModel';
-import {Link} from 'react-router-dom';
-
 
 export default class Dishes extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     // We create the state to store the various statuses
     // e.g. API data loading or error 
     this.state = {
@@ -22,12 +21,10 @@ export default class Dishes extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.getAllDishes("", "").then(dishes => {
-      console.log(dishes);
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
       })
-      console.log(this.state.dishes);
     }).catch(() => {
       this.setState({
         status: 'ERROR'
@@ -47,11 +44,9 @@ export default class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <div className="col-xs-12 col-sm-4 col-md-3 dish-item" id={'dish-'+dish.id} key={'dish-'+dish.id}>
-          <Link to={"/detailView/" + dish.id}>
-            <img alt="dish" className="dish-image" src={'https://spoonacular.com/recipeImages/'+ dish.image}/>
-            <p className="dish-name">{dish.title}</p>
-          </Link>
+          <div className="col-xs-12 col-sm-4 col-md-3 dish-item" key={'dish-'+dish.id}>
+              <img alt="dish" onClick={this.props.setDish} id={dish.id} className="dish-image" src={'https://spoonacular.com/recipeImages/'+ dish.image}/>
+              <p className="dish-name">{dish.title}</p>
           </div>
         )
         break;

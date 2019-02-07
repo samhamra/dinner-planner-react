@@ -4,9 +4,8 @@ import '../App/App.css';
 import Dishes from '../Dishes/Dishes';
 
 export default class SelectDish extends Component {
-  constructor() {
+  constructor(props) {
     super()
-    console.log("Skapat en selectdish");
   }
   
   render() {
@@ -40,7 +39,7 @@ export default class SelectDish extends Component {
                 </div>
               </div>
               <div className="row">
-                <Dishes/>
+                <Dishes setDish={this.props.setDish}/>
               </div>
             </div>
       );

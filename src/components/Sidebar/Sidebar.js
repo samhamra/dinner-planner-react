@@ -6,7 +6,7 @@ export default class Sidebar extends Component {
 
   constructor(props) {
     super(props)
-
+    console.log("Skapat en sidebar");
     // we put on state the properties we want to use and modify in the component
     this.state = {
       numberOfGuests: modelInstance.getNumberOfGuests()

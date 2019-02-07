@@ -8,7 +8,6 @@ import ShoppingScreen from '../ShoppingScreen/ShoppingScreen'
 export default class Main extends Component {
 
   render() {
-    console.log(modelInstance);
     return (
       <div className="container-fluid">
         <div className="row">

@@ -25,6 +25,20 @@ const DinnerModel = function () {
       .catch(handleError)
   }
   
+  this.getDishSummary = function(id) {
+    const url = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/summary`
+    return fetch(url, httpOptions)
+      .then(processResponse)
+      .catch(handleError)
+  }
+
+  this.getDish = function(id) {
+    const url = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`
+    return fetch(url, httpOptions)
+      .then(processResponse)
+      .catch(handleError)
+  }
+  
   // API Helper methods
 
   const processResponse = function (response) {
