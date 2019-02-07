@@ -1,0 +1,71 @@
+#sideBarView {
+	border: 3px solid black;
+}
+#dinner-text{
+	font-size: 1.5em;
+	margin-bottom: 0;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#expand-button {
+	padding-top: 2%;
+}
+
+#pad{
+  padding-top:0;
+}
+
+#confirm-button {
+	width: 75%;
+	overflow: hidden;
+}
+
+#cart-container {
+	display: table;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 5px;
+}
+
+#total-price-container {
+	display: table-row; 
+	color: #722f37;
+}
+
+.cart-header-cell {
+	display: table-cell;
+	border-bottom: 3px solid black;
+	border-top: 3px solid black;
+}
+.cart-header-cell:first-child {
+	padding-left: 5%;
+}
+
+.cart-data-row {
+		display: table-row; 
+		background-color: rgb(223,223,223);
+		outline: thin solid;
+}
+.cart-cell {
+	display: table-cell;
+	padding-top: 2%;
+}
+
+.right {
+	float:right;
+}
+
+.dinner-planner {
+	padding: 5% 10% 5% 10%;
+}
+
+.sidebar-price {
+	color: #722f37;
+	padding-right: 1em;
+}
+
+.blur {
+	background-color: rgb(223,223,223);
+	opacity: 0.5;
+}

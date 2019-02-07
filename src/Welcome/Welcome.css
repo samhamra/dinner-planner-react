@@ -1,0 +1,8 @@
+#button-container, #text-container{
+	padding:2em;
+}
+
+
+#create-dinner-button{
+	font-size: 1.5em;
+}

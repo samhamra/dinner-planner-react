@@ -53,14 +53,7 @@ class Dishes extends Component {
         break;
     }
 
-    return (
-      <div className="Dishes">
-        <h3>Dishes</h3>
-        <ul>
-          {dishesList}
-        </ul>
-      </div>
-    );
+    return ""
   }
 }
 

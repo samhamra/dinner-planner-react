@@ -1,10 +1,10 @@
 const httpOptions = {
-  headers: {'X-Mashape-Key': 'YOUR_API_KEY'}
+  headers: {'X-Mashape-Key': 'EQLTqSWbCEmshK4TXyvRenrtEd7tp1uOcIDjsnTZvRiqqjbLLb'}
 };
 
 const DinnerModel = function () {
 
-  let numberOfGuests = 4;
+  let numberOfGuests = 1;
   let observers = [];
 
   this.setNumberOfGuests = function (num) {
@@ -18,8 +18,8 @@ const DinnerModel = function () {
 
   // API Calls
 
-  this.getAllDishes = function () {
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
+  this.getAllDishes = function (type, filter) {
+    const url = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query=${filter}&type=${type}`
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)
