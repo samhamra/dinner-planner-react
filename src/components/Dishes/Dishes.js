@@ -13,14 +13,18 @@ export default class Dishes extends Component {
       status: 'INITIAL'
     }
   }
-
+  
+  componentDidUpdate(prevProps) {
+    if(this.props.filter !== prevProps.filter | this.props.type !== prevProps.type) {
+      this.fetchData();
+    }
+  }
   // this methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
-  componentDidMount = () => {
-    // when data is retrieved we update the state
-    // this will cause the component to re-render
-    modelInstance.getAllDishes("", "").then(dishes => {
+  
+  fetchData() {
+    modelInstance.getAllDishes(this.props.type, this.props.filter).then(dishes => {
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
@@ -30,6 +34,13 @@ export default class Dishes extends Component {
         status: 'ERROR'
       })
     })
+  }
+  
+  componentDidMount() {
+    console.log("didmount");
+    // when data is retrieved we update the state
+    // this will cause the component to re-render
+    this.fetchData();
   }
 
   render() {

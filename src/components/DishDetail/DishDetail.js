@@ -18,8 +18,7 @@ export default class DishDetail extends Component {
       modelInstance.getDish(this.props.id), 
       modelInstance.getDishSummary(this.props.id)
     ]).then(data => {
-      console.log("data has been gotten yo");
-      data[0].summary = data[1].summary.replace(/<\/?b>/g,'')
+      data[0].summary = data[1].summary.replace(/(<\/?b>)/g,'')
       this.setState({
         status: 'LOADED',
         data: data[0]

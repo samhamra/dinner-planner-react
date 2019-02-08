@@ -6,20 +6,40 @@ import Dishes from '../Dishes/Dishes';
 export default class SelectDish extends Component {
   constructor(props) {
     super()
+    this.state = {
+      filter: "",
+      type: ""
+    }
+    this.selectHandler = this.selectHandler.bind(this);
+    this.setSearchString = this.setSearchString.bind(this);
+  }
+  
+  selectHandler(e) {
+    this.setState({
+      type: e.target.selectedOptions[0].value
+    })
+  }
+  
+  setSearchString(e) {
+    e.preventDefault();
+    this.setState({
+      filter: e.target.elements[0].value
+    })
   }
   
   render() {
     return (
           <div className="col-xs-12 col-sm-10 container-fluid" id="dishSearchView">
             <div className="row">
-              <div className="col-xs-4 col-sm-3">
-                <h2>Find a dish</h2>
+              <div className="col-xs-12 col-sm-4 offset-sm-4">
+                <h2 id="dish-search-header">Find a dish</h2>
               </div>
-              <div className="col-xs-4 col-sm-3">
-                <input id="search-input" type="text" name="firstname" placeholder="Enter Key Words"/>
-              </div>
-                <div className="col-xs-4 col-sm-3">
-                  <select name="types" id="select-type">
+            </div>
+            <div className="row padded-row">
+              <div className="col-xs-12">
+                <form onSubmit={this.setSearchString} id="search-form">
+                  <input id="search-input" type="text" placeholder="Enter Key Words"/>
+                  <select onChange={this.selectHandler} name="types" id="select-type">
                     <option value="">All</option>
                     <option value="main course">main course</option>
                     <option value="side dish">side dish</option>
@@ -33,15 +53,14 @@ export default class SelectDish extends Component {
                     <option value="sauce">sauce</option>
                     <option value="drink">drink</option>
                   </select>
-                </div>
-                <div className="col-xs-12 col-sm-1">
-                  <button id="search-button" className="button center" type="button" name="button">Search</button>
-                </div>
-              </div>
-              <div className="row">
-                <Dishes setDish={this.props.setDish}/>
+                </form>
+                <button id="search-button" className="button" type="submit" form="search-form" value="Submit">Search</button>
               </div>
             </div>
+            <div className="row">
+              <Dishes setDish={this.props.setDish} filter={this.state.filter} type={this.state.type}/>
+            </div>
+          </div>
       );
   }
 }

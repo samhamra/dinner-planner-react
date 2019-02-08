@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { modelInstance } from '../../data/DinnerModel'
 import '../App/App.css';
 import './Main.css'
 import Welcome from '../Welcome/Welcome'
