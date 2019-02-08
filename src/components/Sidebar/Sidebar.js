@@ -34,7 +34,7 @@ export default class Sidebar extends Component {
 
   // our handler for the input's on change event
   onNumberOfGuestsChanged = (e) => {
-    modelInstance.setNumberOfGuests(+ e.target.value)
+    modelInstance.setNumberOfGuests(e.target.value)
   }
 
   render() {
@@ -47,8 +47,8 @@ export default class Sidebar extends Component {
                 <span className="d-sm-none right sidebar-price"></span>
               </p>
               <div className="d-none d-sm-block hide">
-                People:
-                <input className="guest-input" value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+                People: {this.state.numberOfGuests}
+                <input className="guest-input" onChange={this.onNumberOfGuestsChanged}/>
               </div>
             </div>
             <div className="d-none d-sm-block hide">
