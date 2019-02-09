@@ -8,7 +8,17 @@
 	overflow: hidden;
 }
 
-#expand-button {
+.btn {
+	padding: 0 0 0 0;
+	margin-left: .5em;
+	margin-right: .5em;
+}
+
+.fa-minus, .fa-plus {
+    font-size: 12px;
+}
+
+.expand {
 	padding-top: 2%;
 }
 
@@ -24,6 +34,10 @@
 	padding: 5% 10% 5% 10%;
 }
 
-.guest-input {
-  width: 20%;
+
+@media only screen and (max-width: 575px) {
+	.right-sticky {
+		float: none;
+		padding-left: 25%;
+	}
 }

@@ -1,0 +1,20 @@
+#topBarView {
+	margin-bottom: 1em;
+}
+
+.right-sticky {
+	padding: 1% 0 1% 0;
+	float:right;
+}
+
+.bot-border {
+	border-bottom: 3px solid black;
+}
+
+
+@media only screen and (max-width: 575px) {
+	.right-sticky {
+		float: none;
+		padding-left: 25%;
+	}
+}

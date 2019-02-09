@@ -27,7 +27,6 @@ export default class Dishes extends Component {
   // that's a good place to call the API and get the data
   
   fetchData() {
-    console.log("data fetch");
     document.body.classList.add('loading');
     modelInstance.getAllDishes(this.props.type, this.props.filter).then(dishes => {
       this.setState({
@@ -39,6 +38,7 @@ export default class Dishes extends Component {
       this.setState({
         status: 'ERROR'
       })
+      document.body.classList.remove('loading'); 
     })
   }
   

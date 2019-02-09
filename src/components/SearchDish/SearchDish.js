@@ -5,7 +5,6 @@ import Dishes from '../Dishes/Dishes';
 
 export default class SearchDish extends Component {
   constructor(props) {
-    console.log("SearchDish constructor");
     super()
     this.state = {
       filter: "",
@@ -37,7 +36,7 @@ export default class SearchDish extends Component {
               </div>
             </div>
             <div className="row padded-row">
-              <div className="col-xs-12">
+              <div className="col-sm-8">
                 <form onSubmit={this.setSearchString} id="search-form">
                   <input id="search-input" type="text" placeholder="Enter Key Words"/>
                   <select onChange={this.selectHandler} name="types" id="select-type">
@@ -55,6 +54,8 @@ export default class SearchDish extends Component {
                     <option value="drink">drink</option>
                   </select>
                 </form>
+              </div>
+              <div className="col-sm-4">
                 <button id="search-button" className="button" type="submit" form="search-form" value="Submit">Search</button>
               </div>
             </div>

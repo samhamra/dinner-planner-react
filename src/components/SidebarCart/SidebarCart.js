@@ -32,11 +32,10 @@ export default class SidebarCart extends Component {
   
   render() {
     var cartItems = this.state.menu.map(dish => {
-      console.log(dish);
       return (
         <div className="cart-data-row" key={dish.id}>
           <p className="cart-cell">{dish.title}</p>
-          <p className="cart-cell">{dish.extendedIngredients.length * this.state.numberOfGuests}</p>
+          <p className="cart-cell">{dish.extendedIngredients.length * this.state.numberOfGuests + " SEK"}</p>
         </div>
       )
     });
@@ -52,7 +51,7 @@ export default class SidebarCart extends Component {
           <div id="total-price-container">
             <p className="cart-cell"></p>
             <p className="cart-cell">
-              {modelInstance.getTotalMenuPrice()}
+              {modelInstance.getTotalMenuPrice() + " SEK"}
             </p>
           </div>
         </div>
@@ -60,7 +59,7 @@ export default class SidebarCart extends Component {
         { 
           this.state.menu.length===0
           ?  <button id="confirm-button" className="button blur center">Confirm Dinner</button>
-          : <Link to={'/dinnerOverview'}>
+          : <Link to={'/overview'}>
               <button id="confirm-button" className="button center">Confirm Dinner</button>
             </Link>
         }

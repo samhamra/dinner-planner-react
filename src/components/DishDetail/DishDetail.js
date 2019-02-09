@@ -34,21 +34,29 @@ export default class DishDetail extends Component {
       document.body.classList.remove('loading'); 
       
     }).catch(() => {
-      console.log("error");
       this.setState({
         status: 'ERROR'
       })
+      document.body.classList.remove('loading'); 
     })
     
   }
   
   render() {
+    if(this.state.status === 'ERROR') {
+      return (
+        <div className="col-xs-12 col-sm-10 container-fluid" id="dishDetailView">
+          <h2>Failed loading data, please try again</h2>
+        </div>
+      )
+    }
+    
     return (
       <div className="col-xs-12 col-sm-10 container-fluid" id="dishDetailView">
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <div className="dish">
-              <h2 id="dish-name">{this.state.data.title}</h2>
+              <h2 id="dish-name">{this.state.status === this.state.data.title}</h2>
               <figure>
                 <img src={this.state.data.image} className="detail-image" id="dish-image" alt=""/>
                 <figcaption id="dish-description">{this.state.data.summary}</figcaption>

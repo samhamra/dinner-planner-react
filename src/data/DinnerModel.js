@@ -12,7 +12,17 @@ const DinnerModel = function () {
     numberOfGuests = num;
     notifyObservers(0);
   };
-
+  
+  this.addGuest = function() {
+    numberOfGuests++;
+    notifyObservers(0);
+  }
+  this.removeGuest = function() {
+    if(numberOfGuests>1) {
+      numberOfGuests--;
+      notifyObservers(0);
+    }
+  }
   this.getNumberOfGuests = function () {
     return numberOfGuests;
   };
@@ -21,8 +31,10 @@ const DinnerModel = function () {
     return selectedDishes;
   }
   this.addDishToMenu = function(dish) {
-    selectedDishes.push(dish);
-    notifyObservers(1)
+    if(!selectedDishes.find(a => a.id === dish.id)) {
+      selectedDishes.push(dish);
+      notifyObservers(1)
+    }
   }
   
   this.getTotalMenuPrice = function() {

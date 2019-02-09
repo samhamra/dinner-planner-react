@@ -2,6 +2,14 @@
   text-align: center;
 }
 .padded-row {
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin: 1em 1em 1em 1em;
 }
+
+#select-type {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+#search-input {
+  border: 1px solid black;
+}
+

@@ -53,11 +53,11 @@ export default class DishIngredients extends Component {
               ?  this.props.ingredients.map((ingredient) => {
                   return (
                     <tr className="recipe-data" key={ingredient.id}>
-                      <td className="variable-td" data-single-amount={ingredient.amount}>{ingredient.amount*this.state.numberOfGuests}</td>
+                      <td>{ingredient.amount*this.state.numberOfGuests}</td>
                       <td>{ingredient.unit}</td>
                       <td>{ingredient.name}</td>
                       <td>SEK</td>
-                      <td className="variable-td">{this.state.numberOfGuests}</td>
+                      <td>{this.state.numberOfGuests}</td>
                     </tr>
                   )
                 })
@@ -74,7 +74,8 @@ export default class DishIngredients extends Component {
                   <button id="add-button" onClick={this.props.addDish} className="button" type="button" name="add-to-menu">Add to Menu</button>
                 </Link>  
               </td>
-              <td></td>
+              <td/>
+              <td/>
               <td>SEK</td>
               <td id="totalPriceTag">{this.props.ingredients && this.state.numberOfGuests*this.props.ingredients.length}</td>
             </tr>

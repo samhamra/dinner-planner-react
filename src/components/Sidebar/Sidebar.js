@@ -3,56 +3,60 @@ import './Sidebar.css';
 import '../App/App.css';
 import SidebarCart from '../SidebarCart/SidebarCart';
 import {modelInstance} from '../../data/DinnerModel';
+import ReactDOM from 'react-dom';
 export default class Sidebar extends Component {
 
   constructor(props) {
     super(props)
-    console.log("Skapat en sidebar");
-    // we put on state the properties we want to use and modify in the component
     this.state = {
       numberOfGuests: modelInstance.getNumberOfGuests(),
-
     }
+    this.expand = this.expand.bind(this);
   }
 
-  // this methods is called by React lifecycle when the
-  // component is actually shown to the user (mounted to DOM)
-  // that's a good place to setup model observer
   componentDidMount() {
     modelInstance.addObserver(this)
   }
 
-  // this is called when component is removed from the DOM
-  // good place to remove observer
   componentWillUnmount() {
     modelInstance.removeObserver(this)
   }
 
-  // in our update function we modify the state which will
-  // cause the component to re-render
   update(code) {
     if(code === 0) {
       this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
     }
   }
-
-  // our handler for the input's on change event
-  onNumberOfGuestsChanged = (e) => {
-    modelInstance.setNumberOfGuests(e.target.value)
+  
+  expand() {
+    let toggle = ReactDOM.findDOMNode(this).querySelectorAll('.hide');
+    let price = ReactDOM.findDOMNode(this).querySelector('.sidebar-price');
+    window.price = price;
+    toggle.forEach(e => {
+      if(e.classList.contains('d-sm-block')){
+        price.hidden = true;
+      } else {
+        price.hidden = false;
+      }
+      e.classList.toggle('d-sm-block');
+      e.classList.toggle('d-none');
+    })
   }
 
   render() {
+    let fullPrice = modelInstance.getTotalMenuPrice();
     return (
       <div className="col-xs-12 col-sm-2 container-fluid" id="sideBarView">
         <div className="row">
           <div className="col-xs-12 menu">
             <div className="dinner-planner">
-              <p id="dinner-text">My Dinner<span id="expand-button" className="d-sm-none fa fa-bars right"></span>
-                <span className="d-sm-none right sidebar-price"></span>
+              <p id="dinner-text">My Dinner<span onClick={this.expand} className="expand d-sm-none fa fa-bars right"></span>
+                <span className="d-sm-none right sidebar-price">{ fullPrice > 0 ? fullPrice + " SEK" : ""}</span>
               </p>
               <div className="d-none d-sm-block hide">
                 People: {this.state.numberOfGuests}
-                <input className="guest-input" onChange={this.onNumberOfGuestsChanged}/>
+                  <button id="minusGuest" onClick={modelInstance.removeGuest}className="btn"><i className="fa fa-minus" aria-hidden="true"></i></button>
+                  <button id="plusGuest" onClick={modelInstance.addGuest} className="btn"><i className="fa fa-plus" aria-hidden="true"></i></button>
               </div>
             </div>
             <SidebarCart/>
