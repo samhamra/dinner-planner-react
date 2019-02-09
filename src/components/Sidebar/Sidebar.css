@@ -34,10 +34,3 @@
 	padding: 5% 10% 5% 10%;
 }
 
-
-@media only screen and (max-width: 575px) {
-	.right-sticky {
-		float: none;
-		padding-left: 25%;
-	}
-}
