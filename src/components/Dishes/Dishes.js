@@ -9,9 +9,7 @@ export default class Dishes extends Component {
     super(props);
     // We create the state to store the various statuses
     // e.g. API data loading or error
-    console.log(
-      "constructor"
-    );  
+  
     
     this.state = {
       status: 'INITIAL'
@@ -30,11 +28,13 @@ export default class Dishes extends Component {
   
   fetchData() {
     console.log("data fetch");
+    document.body.classList.add('loading');
     modelInstance.getAllDishes(this.props.type, this.props.filter).then(dishes => {
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
       })
+      document.body.classList.remove('loading'); 
     }).catch(() => {
       this.setState({
         status: 'ERROR'
@@ -43,10 +43,7 @@ export default class Dishes extends Component {
   }
   
   componentDidMount() {
-    this.fetchData();
-    // when data is retrieved we update the state
-    // this will cause the component to re-render
-    
+    this.fetchData(); 
   }
 
   render() {

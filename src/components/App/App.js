@@ -20,7 +20,7 @@ class App extends Component {
               <Route exact path ="/search" component={SearchDish}/>
               <Route exact path ="/search/dish-:id" component={DishDetail}/>
             </div>
-          </div>      
+          </div>    
       </div>
     );
   }

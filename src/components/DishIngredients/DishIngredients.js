@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './DishIngredients.css';
 import '../App/App.css';
 import {modelInstance} from '../../data/DinnerModel';
+import {Link} from 'react-router-dom';
 export default class DishIngredients extends Component {
   constructor(props) {
     super()
@@ -29,9 +30,8 @@ export default class DishIngredients extends Component {
   }
   
   componentDidUpdate() {
-    console.log("updated");
-    console.log(this.props);
   }
+  
   render() {
     return (
       <div className="col-xs-12 col-sm-6 nopadding">
@@ -69,7 +69,11 @@ export default class DishIngredients extends Component {
               </td>
             </tr>
             <tr>
-              <td><button id="add-button" onClick={this.props.addDish} className="button" type="button" name="add-to-menu">Add to Menu</button></td>
+              <td>
+                <Link to={"/search"}>
+                  <button id="add-button" onClick={this.props.addDish} className="button" type="button" name="add-to-menu">Add to Menu</button>
+                </Link>  
+              </td>
               <td></td>
               <td>SEK</td>
               <td id="totalPriceTag">{this.props.ingredients && this.state.numberOfGuests*this.props.ingredients.length}</td>

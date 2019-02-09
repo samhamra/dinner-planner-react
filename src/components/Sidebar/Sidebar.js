@@ -10,7 +10,8 @@ export default class Sidebar extends Component {
     console.log("Skapat en sidebar");
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: modelInstance.getNumberOfGuests()
+      numberOfGuests: modelInstance.getNumberOfGuests(),
+
     }
   }
 
@@ -33,9 +34,6 @@ export default class Sidebar extends Component {
     if(code === 0) {
       this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
     }
-    if(code === 1) {
-      
-    }
   }
 
   // our handler for the input's on change event
@@ -56,7 +54,8 @@ export default class Sidebar extends Component {
                 People: {this.state.numberOfGuests}
                 <input className="guest-input" onChange={this.onNumberOfGuestsChanged}/>
               </div>
-            </div>            
+            </div>
+            <SidebarCart/>
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ export default class DishDetail extends Component {
   }
   
   componentDidMount() {
+    document.body.classList.add('loading'); 
     Promise.all([
       modelInstance.getDish(this.props.match.params.id), 
       modelInstance.getDishSummary(this.props.match.params.id)
@@ -30,6 +31,7 @@ export default class DishDetail extends Component {
         status: 'LOADED',
         data: data[0]
       })
+      document.body.classList.remove('loading'); 
       
     }).catch(() => {
       console.log("error");

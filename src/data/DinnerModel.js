@@ -6,6 +6,7 @@ const DinnerModel = function () {
 
   let numberOfGuests = 1;
   let observers = [];
+  let selectedDishes = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -15,6 +16,22 @@ const DinnerModel = function () {
   this.getNumberOfGuests = function () {
     return numberOfGuests;
   };
+  
+  this.getMenu = function() {
+    return selectedDishes;
+  }
+  this.addDishToMenu = function(dish) {
+    selectedDishes.push(dish);
+    notifyObservers(1)
+  }
+  
+  this.getTotalMenuPrice = function() {
+    if(selectedDishes.length === 0) {
+      return 0;
+    }
+    return selectedDishes.map(dish => dish.extendedIngredients.length).reduce((a,b) => a+b)*numberOfGuests;
+  }
+
 
   // API Calls
 
@@ -40,10 +57,7 @@ const DinnerModel = function () {
   }
   
   
-  this.addDishToMenu = function(dish) {
-    this.selectedDishes.push(dish);
-    this.notifyObservers(1)
-  }
+
   // API Helper methods
 
   const processResponse = function (response) {
