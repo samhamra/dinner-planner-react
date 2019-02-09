@@ -3,10 +3,17 @@ const httpOptions = {
 };
 
 const DinnerModel = function () {
-
   let numberOfGuests = 1;
-  let observers = [];
   let selectedDishes = [];
+  let observers = [];
+  let guestCache = localStorage.getItem('guests');
+  let menuCache = localStorage.getItem('menu');
+  if(guestCache) {
+    numberOfGuests = guestCache
+  }
+  if(menuCache) {
+    selectedDishes = JSON.parse(menuCache);
+  }
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -15,11 +22,13 @@ const DinnerModel = function () {
   
   this.addGuest = function() {
     numberOfGuests++;
+    localStorage.setItem('guests', numberOfGuests)
     notifyObservers(0);
   }
   this.removeGuest = function() {
     if(numberOfGuests>1) {
       numberOfGuests--;
+      localStorage.setItem('guests', numberOfGuests)
       notifyObservers(0);
     }
   }
@@ -33,6 +42,8 @@ const DinnerModel = function () {
   this.addDishToMenu = function(dish) {
     if(!selectedDishes.find(a => a.id === dish.id)) {
       selectedDishes.push(dish);
+      console.log();
+      localStorage.setItem('menu', JSON.stringify(selectedDishes))
       notifyObservers(1)
     }
   }
