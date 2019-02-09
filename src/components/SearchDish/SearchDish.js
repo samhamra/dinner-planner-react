@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import './SelectDish.css';
+import './SearchDish.css';
 import '../App/App.css';
 import Dishes from '../Dishes/Dishes';
 
-export default class SelectDish extends Component {
+export default class SearchDish extends Component {
   constructor(props) {
+    console.log("SearchDish constructor");
     super()
     this.state = {
       filter: "",
@@ -29,7 +30,7 @@ export default class SelectDish extends Component {
   
   render() {
     return (
-          <div className="col-xs-12 col-sm-10 container-fluid" id="dishSearchView">
+          <div className="col-xs-12 col-sm-10" id="dishSearchView">
             <div className="row">
               <div className="col-xs-12 col-sm-4 offset-sm-4">
                 <h2 id="dish-search-header">Find a dish</h2>

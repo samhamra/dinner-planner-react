@@ -22,8 +22,10 @@ export default class DishIngredients extends Component {
 
   // in our update function we modify the state which will
   // cause the component to re-render
-  update() {
-    this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
+  update(code) {
+    if(code === 0) {
+      this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
+    }
   }
   
   componentDidUpdate() {
@@ -67,7 +69,7 @@ export default class DishIngredients extends Component {
               </td>
             </tr>
             <tr>
-              <td><button id="add-button" className="button" type="button" name="add-to-menu">Add to Menu</button></td>
+              <td><button id="add-button" onClick={this.props.addDish} className="button" type="button" name="add-to-menu">Add to Menu</button></td>
               <td></td>
               <td>SEK</td>
               <td id="totalPriceTag">{this.props.ingredients && this.state.numberOfGuests*this.props.ingredients.length}</td>

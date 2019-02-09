@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Sidebar.css';
 import '../App/App.css';
+import SidebarCart from '../SidebarCart/SidebarCart';
 import {modelInstance} from '../../data/DinnerModel';
 export default class Sidebar extends Component {
 
@@ -28,8 +29,13 @@ export default class Sidebar extends Component {
 
   // in our update function we modify the state which will
   // cause the component to re-render
-  update() {
-    this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
+  update(code) {
+    if(code === 0) {
+      this.setState({numberOfGuests: modelInstance.getNumberOfGuests()})
+    }
+    if(code === 1) {
+      
+    }
   }
 
   // our handler for the input's on change event
@@ -50,24 +56,7 @@ export default class Sidebar extends Component {
                 People: {this.state.numberOfGuests}
                 <input className="guest-input" onChange={this.onNumberOfGuestsChanged}/>
               </div>
-            </div>
-            <div className="d-none d-sm-block hide">
-              <div id="cart-container">
-                <div className="cart-header-row">
-                  <p className="cart-header-cell">Dish Name</p>
-                  <p className="cart-header-cell">Cost</p>
-                </div>
-                <div id="total-price-container">
-                  <p className="cart-cell"></p>
-                  <p className="cart-cell">SEK
-                    <span id="total-price-tag"></span>
-                  </p>
-                </div>
-              </div>
-              <div className="pad">
-                <button id="confirm-button" className="button blur center" type="button" name="button">Confirm Dinner</button>
-              </div>
-            </div>
+            </div>            
           </div>
         </div>
       </div>

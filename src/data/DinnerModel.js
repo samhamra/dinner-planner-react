@@ -9,7 +9,7 @@ const DinnerModel = function () {
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
-    notifyObservers();
+    notifyObservers(0);
   };
 
   this.getNumberOfGuests = function () {
@@ -39,6 +39,11 @@ const DinnerModel = function () {
       .catch(handleError)
   }
   
+  
+  this.addDishToMenu = function(dish) {
+    this.selectedDishes.push(dish);
+    this.notifyObservers(1)
+  }
   // API Helper methods
 
   const processResponse = function (response) {
@@ -68,8 +73,8 @@ const DinnerModel = function () {
     observers = observers.filter(o => o !== observer);
   };
 
-  const notifyObservers = function () {
-    observers.forEach(o => o.update());
+  const notifyObservers = function (code) {
+    observers.forEach(o => o.update(code));
   };
 };
 

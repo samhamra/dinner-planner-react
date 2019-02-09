@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import { Route } from 'react-router-dom';
 import '../App/App.css';
 import './ShoppingScreen.css';
 import Sidebar from '../Sidebar/Sidebar';
-import SelectDish from '../SelectDish/SelectDish';
+import SearchDish from '../SearchDish/SearchDish';
 import DishDetail from '../DishDetail/DishDetail';
 export default class ShoppingScreen extends Component {
   
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       dishSearch: true,
@@ -31,11 +32,12 @@ export default class ShoppingScreen extends Component {
     return (
       <div className="col-xs-12 container-fluid">
         <div className="row">
+        
           <Sidebar />
-          { this.state.dishSearch 
-            ? <SelectDish setDish={this.setDishId} />
-            : <DishDetail toggleScreen={this.toggleScreen} id={this.state.dishId}/>
-          }
+          <Route exact path="/search" component={SearchDish}/>
+          <Route exact path="/search?filter=:filter&type=:type" component={SearchDish}/>
+          <Route exact path="/search/dish-:id" component={DishDetail}/>
+
         </div>
       </div>
     )

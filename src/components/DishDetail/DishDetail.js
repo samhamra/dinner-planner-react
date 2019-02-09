@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './DishDetail.css';
 import '../App/App.css';
 import DishIngredients from '../DishIngredients/DishIngredients'
@@ -7,17 +8,22 @@ import {modelInstance} from '../../data/DinnerModel';
 export default class DishDetail extends Component {
   constructor(props) {
     super()
-    console.log(props);
     this.state = {
       status: 'INITIAL',
       data: {}
     }
+    this.addDish = this.addDish.bind(this);
+  }
+  
+  
+  addDish() {
+    modelInstance.addDishToMenu(this.state.data);
   }
   
   componentDidMount() {
     Promise.all([
-      modelInstance.getDish(this.props.id), 
-      modelInstance.getDishSummary(this.props.id)
+      modelInstance.getDish(this.props.match.params.id), 
+      modelInstance.getDishSummary(this.props.match.params.id)
     ]).then(data => {
       data[0].summary = data[1].summary.replace(/(<\/?b>)/g,'')
       this.setState({
@@ -35,7 +41,6 @@ export default class DishDetail extends Component {
   }
   
   render() {
-    console.log(this.state.data.extendedIngredients);
     return (
       <div className="col-xs-12 col-sm-10 container-fluid" id="dishDetailView">
         <div className="row">
@@ -47,11 +52,14 @@ export default class DishDetail extends Component {
                 <figcaption id="dish-description">{this.state.data.summary}</figcaption>
               </figure>
               <h2>Preparation</h2>
+              
               <p id="dish-preparation">{this.state.data.instructions}</p>
-              <button onClick={this.props.toggleScreen} id="back-button" className="button" type="button" name="previous">Back to search</button>
+              <Link to={'/search'}>
+              <button id="back-button" className="button" type="button" name="previous">Back to search</button>
+              </Link>
             </div>
           </div>
-          <DishIngredients ingredients={this.state.data.extendedIngredients}/>
+          <DishIngredients addDish={this.addDish} ingredients={this.state.data.extendedIngredients}/>
         </div>
       </div>
     )
